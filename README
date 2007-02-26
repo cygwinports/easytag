@@ -1,0 +1,102 @@
+easytag
+------------------------------------------
+EasyTAG is a utility for viewing and editing tags for MP3, MP2, MP4/AAC, 
+FLAC, Ogg Vorbis, MusePack and Monkey's Audio files with a simple and 
+nice GTK+ interface.
+
+Runtime requirements:
+  cygwin-1.5.24-2
+  gdk-pixbuf2-2.10.9-1
+  glib2-2.12.9-1
+  gtk2-x11-2.10.9-1
+  id3lib-3.8.3-1
+  libFLAC7-1.1.2-1
+  libintl8-0.15-1
+  libmpeg4ip0-1.5.0.1-1
+  libogg0-1.1.2-1
+  libvorbis0-1.1.1-1
+  libvorbisfile3-1.1.1-1
+  pango-1.14.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  cygwin-1.5.24-2
+  autoconf2.5-2.61-1
+  automake1.9-1.9.6-2
+  binutils-20060817-1
+  cygport-0.2.9-1
+  gawk-3.1.5-4
+  gcc-core-3.4.4-3
+  gcc-g++-3.4.4-3
+  libtool1.5-1.5.23a-2
+  make-3.81-1
+  pkg-config-0.21-1
+  sed-4.1.5-2
+
+Canonical website:
+  http://easytag.sourceforge.net/
+
+Canonical download:
+  http://downloads.sourceforge.net/easytag/
+
+-------------------------------------------
+
+Build instructions:
+  unpack easytag-2.0-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./easytag-2.0-X.cygport all
+
+This will create:
+  /usr/src/easytag-2.0-X-src.tar.bz2
+  /usr/src/easytag-2.0-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /etc/postinstall/easytag.sh
+  /usr/bin/easytag.exe
+  /usr/share/applications/easytag.desktop
+  /usr/share/doc/Cygwin/easytag-2.0.README
+  /usr/share/doc/easytag-2.0/ABOUT-NLS
+  /usr/share/doc/easytag-2.0/COPYING
+  /usr/share/doc/easytag-2.0/ChangeLog
+  /usr/share/doc/easytag-2.0/INSTALL
+  /usr/share/doc/easytag-2.0/README
+  /usr/share/doc/easytag-2.0/THANKS
+  /usr/share/doc/easytag-2.0/TODO
+  /usr/share/easytag/ChangeLog
+  /usr/share/easytag/EasyTAG_logo.xpm
+  /usr/share/locale/bg/LC_MESSAGES/easytag.mo
+  /usr/share/locale/cs/LC_MESSAGES/easytag.mo
+  /usr/share/locale/da/LC_MESSAGES/easytag.mo
+  /usr/share/locale/de/LC_MESSAGES/easytag.mo
+  /usr/share/locale/el/LC_MESSAGES/easytag.mo
+  /usr/share/locale/es/LC_MESSAGES/easytag.mo
+  /usr/share/locale/fr/LC_MESSAGES/easytag.mo
+  /usr/share/locale/hu/LC_MESSAGES/easytag.mo
+  /usr/share/locale/it/LC_MESSAGES/easytag.mo
+  /usr/share/locale/ja/LC_MESSAGES/easytag.mo
+  /usr/share/locale/nl/LC_MESSAGES/easytag.mo
+  /usr/share/locale/pl/LC_MESSAGES/easytag.mo
+  /usr/share/locale/pt_BR/LC_MESSAGES/easytag.mo
+  /usr/share/locale/ro/LC_MESSAGES/easytag.mo
+  /usr/share/locale/ru/LC_MESSAGES/easytag.mo
+  /usr/share/locale/sv/LC_MESSAGES/easytag.mo
+  /usr/share/locale/uk/LC_MESSAGES/easytag.mo
+  /usr/share/locale/zh_CN/LC_MESSAGES/easytag.mo
+  /usr/share/man/man1/easytag.1.gz
+  /usr/share/pixmaps/EasyTAG.xpm
+
+------------------
+
+Port Notes:
+
+----- version 2.0-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/
