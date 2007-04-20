@@ -16,6 +16,7 @@ Runtime requirements:
   libogg0-1.1.2-1
   libvorbis0-1.1.1-1
   libvorbisfile3-1.1.1-1
+  libwavpack0-4.31-1
   pango-1.14.10-1
 
 Build requirements:
@@ -24,7 +25,7 @@ Build requirements:
   autoconf2.5-2.61-1
   automake1.9-1.9.6-2
   binutils-20060817-1
-  cygport-0.2.9-1
+  cygport-0.2.11-1
   gawk-3.1.5-4
   gcc-core-3.4.4-3
   gcc-g++-3.4.4-3
@@ -42,15 +43,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack easytag-2.0-X-src.tar.bz2
+  unpack easytag-2.0.1-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./easytag-2.0-X.cygport all
+  cygport ./easytag-2.0.1-X.cygport all
 
 This will create:
-  /usr/src/easytag-2.0-X-src.tar.bz2
-  /usr/src/easytag-2.0-X.tar.bz2
+  /usr/src/easytag-2.0.1-X-src.tar.bz2
+  /usr/src/easytag-2.0.1-X.tar.bz2
 
 -------------------------------------------
 
@@ -59,14 +60,14 @@ Files included in the binary package:
   /etc/postinstall/easytag.sh
   /usr/bin/easytag.exe
   /usr/share/applications/easytag.desktop
-  /usr/share/doc/Cygwin/easytag-2.0.README
-  /usr/share/doc/easytag-2.0/ABOUT-NLS
-  /usr/share/doc/easytag-2.0/COPYING
-  /usr/share/doc/easytag-2.0/ChangeLog
-  /usr/share/doc/easytag-2.0/INSTALL
-  /usr/share/doc/easytag-2.0/README
-  /usr/share/doc/easytag-2.0/THANKS
-  /usr/share/doc/easytag-2.0/TODO
+  /usr/share/doc/Cygwin/easytag-2.0.1.README
+  /usr/share/doc/easytag-2.0.1/ABOUT-NLS
+  /usr/share/doc/easytag-2.0.1/COPYING
+  /usr/share/doc/easytag-2.0.1/ChangeLog
+  /usr/share/doc/easytag-2.0.1/INSTALL
+  /usr/share/doc/easytag-2.0.1/README
+  /usr/share/doc/easytag-2.0.1/THANKS
+  /usr/share/doc/easytag-2.0.1/TODO
   /usr/share/easytag/ChangeLog
   /usr/share/easytag/EasyTAG_logo.xpm
   /usr/share/locale/bg/LC_MESSAGES/easytag.mo
@@ -93,6 +94,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.1-1 -----
+Version bump.
 
 ----- version 2.0-1 -----
 Initial release for Cygwin.
