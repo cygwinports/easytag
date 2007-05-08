@@ -6,9 +6,9 @@ nice GTK+ interface.
 
 Runtime requirements:
   cygwin-1.5.24-2
-  gdk-pixbuf2-2.10.9-1
-  glib2-2.12.9-1
-  gtk2-x11-2.10.9-1
+  gdk-pixbuf2-2.10.11-1
+  glib2-2.12.12-1
+  gtk2-x11-2.10.11-1
   id3lib-3.8.3-1
   libFLAC7-1.1.2-1
   libintl8-0.15-1
@@ -43,15 +43,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack easytag-2.0.1-X-src.tar.bz2
+  unpack easytag-2.0.2-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./easytag-2.0.1-X.cygport all
+  cygport ./easytag-2.0.2-X.cygport all
 
 This will create:
-  /usr/src/easytag-2.0.1-X-src.tar.bz2
-  /usr/src/easytag-2.0.1-X.tar.bz2
+  /usr/src/easytag-2.0.2-X-src.tar.bz2
+  /usr/src/easytag-2.0.2-X.tar.bz2
 
 -------------------------------------------
 
@@ -60,14 +60,14 @@ Files included in the binary package:
   /etc/postinstall/easytag.sh
   /usr/bin/easytag.exe
   /usr/share/applications/easytag.desktop
-  /usr/share/doc/Cygwin/easytag-2.0.1.README
-  /usr/share/doc/easytag-2.0.1/ABOUT-NLS
-  /usr/share/doc/easytag-2.0.1/COPYING
-  /usr/share/doc/easytag-2.0.1/ChangeLog
-  /usr/share/doc/easytag-2.0.1/INSTALL
-  /usr/share/doc/easytag-2.0.1/README
-  /usr/share/doc/easytag-2.0.1/THANKS
-  /usr/share/doc/easytag-2.0.1/TODO
+  /usr/share/doc/Cygwin/easytag-2.0.2.README
+  /usr/share/doc/easytag-2.0.2/ABOUT-NLS
+  /usr/share/doc/easytag-2.0.2/COPYING
+  /usr/share/doc/easytag-2.0.2/ChangeLog
+  /usr/share/doc/easytag-2.0.2/INSTALL
+  /usr/share/doc/easytag-2.0.2/README
+  /usr/share/doc/easytag-2.0.2/THANKS
+  /usr/share/doc/easytag-2.0.2/TODO
   /usr/share/easytag/ChangeLog
   /usr/share/easytag/EasyTAG_logo.xpm
   /usr/share/locale/bg/LC_MESSAGES/easytag.mo
@@ -94,6 +94,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.2-1 -----
+Version bump.
 
 ----- version 2.0.1-1 -----
 Version bump.
