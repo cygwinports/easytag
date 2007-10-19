@@ -1,0 +1,5 @@
+inherit gnome2
+
+DESCRIPTION="GTK2 audio tag editor"
+HOMEPAGE="http://easytag.sourceforge.net/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
