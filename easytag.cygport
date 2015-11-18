@@ -1,7 +1,7 @@
 inherit gnome2
 
 NAME="easytag"
-VERSION=2.2.6
+VERSION=2.4.0
 RELEASE=1
 CATEGORY="Audio"
 SUMMARY="GTK+ audio tag editor"
@@ -9,5 +9,27 @@ DESCRIPTION="EasyTAG is a utility for viewing and editing tags for MP3, MP2,
 MP4/AAC, FLAC, Ogg Vorbis, MusePack and Monkey's Audio files with a simple and
 nice GTK+ interface."
 HOMEPAGE="http://easytag.sourceforge.net/"
+
+PATCH_URI="2.4.0-caja-extension.patch"
+
+PKG_NAMES="easytag nautilus-easytag caja-easytag"
+easytag_CONTENTS="--exclude=usr/lib etc/ usr/"
+nautilus_easytag_CATEGORY="GNOME"
+nautilus_easytag_SUMMARY="Open with EasyTAG action for Nautilus"
+nautilus_easytag_REQUIRES=${NAME}
+nautilus_easytag_CONTENTS="usr/lib/nautilus/"
+caja_easytag_CATEGORY="GNOME"
+caja_easytag_SUMMARY="Open with EasyTAG action for Caja"
+caja_easytag_REQUIRES=${NAME}
+caja_easytag_CONTENTS="usr/lib/caja/"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook() {
+	inform "Creating Caja extension"
+	mkdir -p caja-extension
+	sed -e 's/NAUTILUS/CAJA/g;s/Nautilus/Caja/g;s/nautilus/caja/g' \
+		nautilus-extension/nautilus-easytag.c \
+		> caja-extension/caja-easytag.c
+}
 
 MAKEOPTS+=" WARN_CFLAGS= "

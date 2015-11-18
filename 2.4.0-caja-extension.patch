@@ -1,0 +1,108 @@
+--- origsrc/easytag-2.4.0/Makefile.am	2015-08-24 14:34:36.000000000 -0500
++++ src/easytag-2.4.0/Makefile.am	2015-11-18 12:32:48.754650500 -0600
+@@ -270,6 +270,32 @@ libnautilus_easytag_la_LIBADD = \
+ 	$(NAUTILUS_LIBS)
+ endif
+ 
++if ENABLE_CAJA_ACTIONS
++caja_extensiondir = $(CAJA_EXTENSION_DIR)
++
++caja_extension_LTLIBRARIES = \
++	libcaja-easytag.la
++
++libcaja_easytag_la_SOURCES = \
++	caja-extension/caja-easytag.c
++
++libcaja_easytag_la_CPPFLAGS = \
++	-I$(top_srcdir) \
++	-I$(top_builddir) \
++	-DLOCALEDIR=\"$(localedir)\" \
++	$(CAJA_CFLAGS)
++
++libcaja_easytag_la_CFLAGS = \
++	$(WARN_CFLAGS)
++
++libcaja_easytag_la_LDFLAGS = \
++	-module -avoid-version -no-undefined \
++	$(WARN_LDFLAGS)
++
++libcaja_easytag_la_LIBADD = \
++	$(CAJA_LIBS)
++endif
++
+ # Create a directory stamp in the build dir. Used to workaround the case where
+ # a pattern rule is used for a target with a path that does not ordinarily
+ # exist in the build dir.
+--- origsrc/easytag-2.4.0/configure.ac	2015-08-29 04:54:47.000000000 -0500
++++ src/easytag-2.4.0/configure.ac	2015-11-18 12:36:04.185967100 -0600
+@@ -161,6 +161,9 @@ AC_ARG_ENABLE([wavpack],
+ AC_ARG_ENABLE([nautilus_actions],
+               [AS_HELP_STRING([--disable-nautilus-actions], [do not build the nautilus context menu actions (default=auto)])])
+ 
++AC_ARG_ENABLE([caja_actions],
++              [AS_HELP_STRING([--disable-caja-actions], [do not build the caja context menu actions (default=auto)])])
++
+ 
+ 
+ dnl -------------------------------
+@@ -333,6 +336,24 @@ AS_IF([test "x$have_libnautilus_extensio
+ 
+ AM_CONDITIONAL([ENABLE_NAUTILUS_ACTIONS], [test x"$have_libnautilus_extension" != x"no"])
+ 
++dnl ################################################
++dnl # Caja
++dnl ################################################
++CAJA_DEPS="libcaja-extension gio-unix-2.0"
++AS_IF([test "x$enable_caja_actions" != "xno"],
++      [PKG_CHECK_EXISTS([$CAJA_DEPS], [have_libcaja_extension=yes], [have_libcaja_extension=no])],
++      [have_libcaja_extension=no])
++
++AS_IF([test "x$have_libcaja_extension" = "xno"],
++      [CAJA_DEPS=""
++       AS_IF([test "x$enable_caja_actions" = "xyes"],
++             [AC_MSG_ERROR([Caja Actions build requested but required dependencies ($CAJA_DEPS) not found])])],
++      [PKG_CHECK_MODULES([CAJA], [$CAJA_DEPS])
++       CAJA_EXTENSION_DIR=`$PKG_CONFIG --variable=extensiondir libcaja-extension`
++       AC_SUBST([CAJA_EXTENSION_DIR], [$CAJA_EXTENSION_DIR])])
++
++AM_CONDITIONAL([ENABLE_CAJA_ACTIONS], [test x"$have_libcaja_extension" != x"no"])
++
+ dnl Check the pkg-config dependencies
+ GIO_DEPS="gio-2.0 >= 2.38.0"
+ AC_SUBST([GLIB_DEPRECATION_FLAGS],
+@@ -393,6 +414,7 @@ echo MP4 file support ........: $have_ta
+ echo WavPack support .........: $have_wavpack
+ echo NLS/gettext .............: $USE_NLS
+ echo Nautilus actions ........: $have_libnautilus_extension
++echo Caja actions ............: $have_libcaja_extension
+ echo Tests during make check .: $testing_utilities
+ echo Install prefix ..........: $prefix
+ echo 
+--- origsrc/easytag-2.4.0/nautilus-extension/nautilus-easytag.c	2015-08-24 14:34:36.000000000 -0500
++++ src/easytag-2.4.0/nautilus-extension/nautilus-easytag.c	2015-11-18 12:49:38.756904500 -0600
+@@ -143,7 +143,12 @@ on_open_in_easytag (NautilusMenuItem *it
+         GList *uris = NULL;
+ 
+         uris = g_list_append (uris, nautilus_file_info_get_uri (dir));
++#if GTK_CHECK_VERSION (3, 0, 0)
+         context = gdk_display_get_app_launch_context (gdk_display_get_default ());
++#else
++        context = gdk_app_launch_context_new ();
++        gdk_app_launch_context_set_display (context, gdk_display_get_default ());
++#endif
+ 
+         g_app_info_launch_uris (G_APP_INFO (appinfo), uris,
+                                 G_APP_LAUNCH_CONTEXT (context), NULL);
+@@ -173,7 +178,12 @@ on_open_with_easytag (NautilusMenuItem *
+                                   nautilus_file_info_get_uri (l->data));
+         }
+ 
++#if GTK_CHECK_VERSION (3, 0, 0)
+         context = gdk_display_get_app_launch_context (gdk_display_get_default ());
++#else
++        context = gdk_app_launch_context_new ();
++        gdk_app_launch_context_set_display (context, gdk_display_get_default ());
++#endif
+ 
+         g_app_info_launch_uris (G_APP_INFO (appinfo), uris,
+                                 G_APP_LAUNCH_CONTEXT (context), NULL);
