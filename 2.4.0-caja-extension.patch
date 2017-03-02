@@ -78,31 +78,3 @@
  echo Tests during make check .: $testing_utilities
  echo Install prefix ..........: $prefix
  echo 
---- origsrc/easytag-2.4.0/nautilus-extension/nautilus-easytag.c	2015-08-24 14:34:36.000000000 -0500
-+++ src/easytag-2.4.0/nautilus-extension/nautilus-easytag.c	2015-11-18 12:49:38.756904500 -0600
-@@ -143,7 +143,12 @@ on_open_in_easytag (NautilusMenuItem *it
-         GList *uris = NULL;
- 
-         uris = g_list_append (uris, nautilus_file_info_get_uri (dir));
-+#if GTK_CHECK_VERSION (3, 0, 0)
-         context = gdk_display_get_app_launch_context (gdk_display_get_default ());
-+#else
-+        context = gdk_app_launch_context_new ();
-+        gdk_app_launch_context_set_display (context, gdk_display_get_default ());
-+#endif
- 
-         g_app_info_launch_uris (G_APP_INFO (appinfo), uris,
-                                 G_APP_LAUNCH_CONTEXT (context), NULL);
-@@ -173,7 +178,12 @@ on_open_with_easytag (NautilusMenuItem *
-                                   nautilus_file_info_get_uri (l->data));
-         }
- 
-+#if GTK_CHECK_VERSION (3, 0, 0)
-         context = gdk_display_get_app_launch_context (gdk_display_get_default ());
-+#else
-+        context = gdk_app_launch_context_new ();
-+        gdk_app_launch_context_set_display (context, gdk_display_get_default ());
-+#endif
- 
-         g_app_info_launch_uris (G_APP_INFO (appinfo), uris,
-                                 G_APP_LAUNCH_CONTEXT (context), NULL);

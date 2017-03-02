@@ -1,7 +1,7 @@
 inherit gnome2
 
 NAME="easytag"
-VERSION=2.4.2
+VERSION=2.4.3
 RELEASE=1
 CATEGORY="Audio"
 SUMMARY="GTK+ audio tag editor"
